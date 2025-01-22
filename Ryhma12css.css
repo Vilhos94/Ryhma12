@@ -20,10 +20,45 @@ a {
     color: #f1f1f1;
 }
 
-/* Sivukohtaiset css overridet */
-.suunnittelupalvelut-page {
-    placeholder
+.bg-blue {
+    background-color: #0084ff7c;
 }
+
+.form-container {
+    position: relative;
+    width: 100%;
+    padding-top: 75%;
+  }
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+/* Sivukohtaiset css overridet */
+.suunnittelupalvelut-page h4 {
+
+    font-size: 18px !important;
+
+}
+
+.suunnittelupalvelut-page ul {
+
+    list-style: disc;
+    margin: 0;
+    padding: 0;
+
+}
+
+.suunnittelupalvelut-page li {
+
+    display: block;
+    margin-bottom: 6px;
+
+}
+
 
 .yhteytiedot-page {
     placeholder
