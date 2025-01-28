@@ -6,29 +6,24 @@
     <title>Insinööritoimisto Koivu Oy</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="ryhma12css.css">
-
 </head>
 <body>
-    <header>
-        <h1 style="text-align: center;">Insinööritoimisto Koivu Oy</h1>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Header ja Navigointipalkki -->
+    <header class="hero-header">
+        <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Etusivu</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="yritys.html">Yritys</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="index.html">Etusivu</a></li>
+                        <li class="nav-item"><a class="nav-link" href="yritys.html">Yritys</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="suunnittelupalvelut.html" id="navbarDropdown" role="button">
-                            Suunnittelupalvelut
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                                Suunnittelupalvelut
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="rakennussuunnittelu.html">Rakennussuunnittelu</a></li>
                                 <li><a class="dropdown-item" href="rakennesuunnittelu.html">Rakennesuunnittelu</a></li>
                                 <li><a class="dropdown-item" href="elementtisuunnittelu.html">Elementtisuunnittelu</a></li>
@@ -36,24 +31,46 @@
                                 <li><a class="dropdown-item" href="energiasuunnittelu.html">Energiasuunnittelu</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Yhteystiedot.html">Yhteystiedot</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="Yhteystiedot.html">Yhteystiedot</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
+        <div class="overlay">
+            <div class="container text-center">
+                <h1 class="fw-bold text-white">Insinööritoimisto Koivu Oy</h1>
+                <p class="text-light">Talosuunnittelupalvelua</p>
+            </div>
+        </div>
     </header>
-    <main>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In bibendum euismod purus. Vivamus congue tortor non dui maximus sollicitudin.</p>
-        <p>Mauris luctus luctus neque, eu tempus neque interdum quis. Sed luctus nibh leo, ut dapibus mi venenatis vel. Fusce imperdiet ipsum</p>
-        <p>massa maximus, ac finibus nisl euismod. In eros nisi, interdum nec dapibus in, feugiat a nibh. Aenean ultrices varius feugiat. Integer</p>
-        <p>congue ut turpis nec hendrerit. Proin id tortor maximus, mollis neque et, molestie nisl. In sed pulvinar tortor, eu venenatis lorem.</p>
-        <p>. Mauris rhoncus vehicula mattis. Curabitur tincidunt consectetur lorem sed suscipit</p>
+    <main class="container mt-5">
+        <section class="row align-items-center">
+            <!-- Kuvan paikka vasemmalla -->
+            <figure class="col-md-6 text-center">
+                <div class="image-placeholder bg-light d-flex align-items-center justify-content-center">
+                    <span>Placeholder for Image</span>
+                </div>
+                <figcaption class="image-caption">Kuvateksti</figcaption>
+            </figure>
+    
+            <!-- Oikealla tekstit -->
+            <article class="col-md-6">
+                <header>
+                    <h2 class="main-heading">Yrityksestä lyhyesti</h2>
+                    <h3 class="sub-heading">Henkilökuva</h3>
+                </header>
+                <p class="body-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In bibendum euismod purus. Vivamus congue tortor non dui maximus sollicitudin. 
+                    Mauris luctus luctus neque, eu tempus neque interdum quis.
+                </p>
+            </article>
+        </section>
     </main>
-    <footer>
-        <p>Website Footer</p>
+
+    <footer class="text-center mt-5 py-3 bg-light">
+        <p>&copy; 2025 Insinööritoimisto Koivu Oy</p>
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
