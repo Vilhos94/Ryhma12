@@ -41,6 +41,10 @@ footer hr {
 	margin: 8px 0;
 }
 
+a.no-underline {
+	text-decoration: none;
+}
+
 .copyright {
 	background-color: #1F4076;
 	text-align: center;
