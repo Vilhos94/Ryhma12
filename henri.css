@@ -1,39 +1,60 @@
-.form-container {
-	position: relative;
-	width: 100%;
-	padding-top: 75%;
+.bg-blue {
+    background-color: #2B569C;
 }
 
-iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+  .text-white {
+	color: white;
 }
 
+  .carousel-caption {
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 10px;
+	border-radius: 5px;
+}
 /* Sivukohtaiset css overridet */
-.suunnittelupalvelut-page h4 {
-	font-size: 18px !important;
-}
 
 .suunnittelupalvelut-page ul {
-	list-style: disc;
-	margin: 0;
-	padding: 0;
+
+    list-style: disc;
+    margin: 0;
+    padding: 0;
 
 }
 
 .suunnittelupalvelut-page li {
-	display: block;
-	margin-bottom: 6px;
+
+    display: block;
+    margin-bottom: 6px;
+
+}
+
+.custom-accordion {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+  @media (min-width: 768px) {
+.custom-accordion {
+      width: 70%;
+    }
 }
 
 
-.yhteytiedot-page {
-	/* placeholder */
+.card {
+    border-radius: 10px;
 }
 
-.bg-blue {
-	background-color: #0084ff7c;
+.form-control {
+    border-radius: 5px;
 }
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+

@@ -31,21 +31,10 @@
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link" href="index.html">Etusivu</a></li>
 						<li class="nav-item"><a class="nav-link" href="yritys.html">Yritys</a></li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-								data-bs-toggle="dropdown">
-								Suunnittelupalvelut
-							</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="rakennussuunnittelu.html">Rakennussuunnittelu</a>
-								</li>
-								<li><a class="dropdown-item" href="rakennesuunnittelu.html">Rakennesuunnittelu</a></li>
-								<li><a class="dropdown-item" href="elementtisuunnittelu.html">Elementtisuunnittelu</a>
-								</li>
-								<li><a class="dropdown-item" href="paasuunnittelu.html">Pääsuunnittelu</a></li>
-								<li><a class="dropdown-item" href="energiasuunnittelu.html">Energiasuunnittelu</a></li>
-							</ul>
+						<li class="nav-item">
+							<a class="nav-link" href="suunnittelupalvelut.html">Suunnittelupalvelut</a>
 						</li>
+						<li class="nav-item"><a class="nav-link" href="referenssit.html">Referenssit</a></li>
 						<li class="nav-item"><a class="nav-link" href="Yhteystiedot.html">Yhteystiedot</a></li>
 					</ul>
 				</div>
@@ -61,24 +50,47 @@
 	<main>
 		<section>
 			<div class="container">
-				<div class="row">
-					<div class="col">
-						<h3>Insinööritoimisto Lehtineva</h3>
-						<p class="mt-4">Puhelin:<br>
-							045 188 6070</p>
-						<p>Sähköposti:<br>
-							info @ lehtineva.fi
-						</p>
-						<p>Postiosoite:<br>
-							Takamaanrinne 8 B 4, 33870 Tampere </p>
-						<p>Y-tunnus: 2469503-8 </p>
+				<div class="row mt-5">
+					<div class="col-12 col-md-6 mb-5">
+						<div class="position-relative d-inline-block">
+							<img src="images/headshot.webp" alt="headshot" class="img-fluid">
+							<p class="position-absolute bottom-0 start-0 text-white bg-dark p-2">
+								Supreme Leader: Matti Koivu
+							</p>
+						</div>
+						<p class="mt-4">Puhelin:<br> 045 2341543</p>
+						<p>Sähköposti:<br> <a href="mailto:info@osoite.fi">info@osoite.fi</a></p>
+						<p>Postiosoite:<br> Hassuosoite 3 B, 33456 Kaupunki</p>
+						<p>Y-tunnus: 1234567-8</p>
 					</div>
-					<div class="col form-container">
-						<iframe jsname="L5Fo6c" class="YMEQtf DnR2hf"
-							sandbox="allow-scripts allow-popups allow-forms allow-same-origin allow-popups-to-escape-sandbox allow-downloads allow-modals allow-storage-access-by-user-activation"
-							frameborder="0" aria-label="Google Forms, Yhteydenotto"
-							src="https://docs.google.com/forms/d/e/1FAIpQLSeejETuzrbvBk3H3haEscnvonAaBG5pbDTLJHmmmyTI6g5gCA/viewform?embedded=true"
-							style="height: 937px" allowfullscreen=""></iframe>
+
+					<div class="col-12 col-md-6 mb-5">
+						<div class="card shadow-lg p-4">
+							<h3 class="text-center mb-4">Ota yhteyttä</h3>
+							<form action="submit.php" method="POST">
+								<div class="mb-3">
+									<label for="name" class="form-label">Nimi</label>
+									<input type="text" class="form-control" id="name" name="name"
+										placeholder="Etunimi Sukunimi" required>
+								</div>
+								<div class="mb-3">
+									<label for="phone" class="form-label">Puhelinnumero</label>
+									<input type="tel" class="form-control" id="phone" name="phone"
+										placeholder="045 2341543" required>
+								</div>
+								<div class="mb-3">
+									<label for="email" class="form-label">Sähköposti</label>
+									<input type="email" class="form-control" id="email" name="email"
+										placeholder="esimerkki@email.com" required>
+								</div>
+								<div class="mb-3">
+									<label for="message" class="form-label">Viesti</label>
+									<textarea class="form-control" id="message" name="message" rows="4"
+										placeholder="Kirjoita viesti tähän..." required></textarea>
+								</div>
+								<button type="submit" class="btn btn-primary w-100">Lähetä</button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
