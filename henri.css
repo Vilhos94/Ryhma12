@@ -1,16 +1,13 @@
+/* Custom värit */
+
 .bg-blue {
     background-color: #2B569C;
 }
 
-  .text-white {
+.text-white {
 	color: white;
 }
 
-  .carousel-caption {
-	background-color: rgba(0, 0, 0, 0.7);
-	padding: 10px;
-	border-radius: 5px;
-}
 /* Sivukohtaiset css overridet */
 
 .suunnittelupalvelut-page ul {
@@ -26,6 +23,8 @@
     display: block;
     margin-bottom: 6px;
 
+/* Karuselli customoinnit */
+
 }
 
 .custom-accordion {
@@ -40,6 +39,14 @@
     }
 }
 
+.carousel-caption {
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 10px;
+	border-radius: 5px;
+}
+
+
+/* Ota yhteyttä lomake */
 
 .card {
     border-radius: 10px;
