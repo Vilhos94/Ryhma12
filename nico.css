@@ -81,3 +81,12 @@ a.no-underline {
 .btn.btn-primary {
 	background-color: #2B569C;
 }
+
+.hero-header.admin {
+	min-height: 180px;
+}
+
+.hero-header.admin .overlay {
+	margin-bottom: 0px;
+	margin-top: 60px;
+}
