@@ -1,7 +1,13 @@
+<?php
+require("db_pdo.php");
+?>
 
 <!DOCTYPE html>
 <html lang="fi">
-<html lang="fi"></html>
+<html lang="fi">
+
+</html>
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,88 +60,33 @@
 	</header>
 	<main class="container-lg py-5 px-md-5">
 		<h2 class="mb-4">Referenssit</h2>
-		<section>
-			<div class="row">
-				<div class="col-md roboto">
-					<h3>2018 Kangasala</h3>
-					<p>Uuden omakotitalon, talousrakennuksen ja pihasaunan rakennussuunnittelu ja pääsuunnittelu
-						asemakaava-alueen ulkopuolella sijaitsevalle rinnetontille.
 
-						Betonivaluharkkorunkoisen asuinrakennuksen ja talousrakennuksen rakennesuunnittelu, sekä
-						hirsirunkoisen pihasaunan perustussuunnittelu.</p>
-				</div>
-				<div class="col-md">
-					<img src="images/referenssit_1.png" class="img-fluid" alt="referenssikuva">
-				</div>
-			</div>
-			<hr>
-		</section>
-		<section>
-			<div class="row">
-				<div class="col-md roboto">
-					<h3>2017 Tampere</h3>
-					<p>Uuden yksilöllisesti toteutetun puuelementtirakenteisen omakotitalon rakennussuunnittelu ja
-						pääsuunnittelu pienelle kaupunkitontille.
+		<?php
+		$sql = "SELECT * FROM koivu_referenssit";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute();
+		$references = $stmt->fetchAll();
 
-						Kohteen vastaavan rakennesuunnittelijan tehtävät ja talotehtaan toimitukseen sisältymättömien
-						rakennesuunnitelmien laatiminen, mm. perustussuunnittelu.</p>
+		$referencesCount = count($references, 0);
+
+
+		foreach ($references as $key => $reference) {
+			?>
+			<section>
+				<div class="row">
+					<div class="col-md roboto">
+						<h3><?= $reference["otsikko"] ?></h3>
+						<p><?= $reference["teksti"] ?></p>
+					</div>
+					<div class="col-md">
+						<img src="<?= $reference["kuva"] ?>" class="img-fluid" alt="referenssikuva">
+					</div>
 				</div>
-				<div class="col-md">
-					<img src="images/referenssit_2.png" class="img-fluid" alt="referenssikuva">
-				</div>
-			</div>
-			<hr>
-		</section>
-		<section>
-			<div class="row">
-				<div class="col-md roboto">
-					<h3>2016 Kerava</h3>
-					<p>Uuden puurunkoisen paikalla rakennetun omakotitalon rakennesuunnittelu.</p>
-				</div>
-				<div class="col-md">
-					<img src="images/referenssit_3.png" class="img-fluid" alt="referenssikuva">
-				</div>
-			</div>
-			<hr>
-		</section>
-		<section>
-			<div class="row">
-				<div class="col-md roboto">
-					<h3>2015 Hämeenkyrö</h3>
-					<p>Uuden harkkorunkoisen omakotitalon ja autotallin suunnittelut kokonaispalveluna sisältäen
-						rakennussuunnittelun, rakennesuunnittelun, sekä pääsuunnittelun.</p>
-				</div>
-				<div class="col-md">
-					<img src="images/referenssit_4.png" class="img-fluid" alt="referenssikuva">
-				</div>
-			</div>
-			<hr>
-		</section>
-		<section>
-			<div class="row">
-				<div class="col-md roboto">
-					<h3>2014 Lempäälä</h3>
-					<p>Vanhan omakotitalon laajennusosan ja uuden autotallin luonnosvaiheen rakennussuunnittelu.</p>
-				</div>
-				<div class="col-md">
-					<img src="images/referenssit_5.png" class="img-fluid" alt="referenssikuva">
-				</div>
-			</div>
-			<hr>
-		</section>
-		<section>
-			<div class="row">
-				<div class="col-md roboto">
-					<h3>2012 Tampere (asuntomessut)</h3>
-					<p>EPS-valuharkkorunkoisen omakotitalon rakennussuunnittelu ja pääsuunnittelu Tampereen
-						asuntomessuille.</p>
-				</div>
-				<div class="col-md">
-					<img src="images/referenssit_6.png" class="img-fluid" alt="referenssikuva">
-				</div>
-			</div>
-			<hr>
-		</section>
+				<?php if ($key < $referencesCount - 1) {
+					echo "<hr>";
+				} ?>
+			</section><?php }
+		?>
 	</main>
 	<footer>
 		<div class="container-md py-3 roboto">
