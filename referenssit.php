@@ -4,9 +4,6 @@ require("db_pdo.php");
 
 <!DOCTYPE html>
 <html lang="fi">
-<html lang="fi">
-
-</html>
 
 <head>
 	<meta charset="UTF-8">
@@ -66,7 +63,7 @@ require("db_pdo.php");
 	</main>
 
 	<?php include 'footer.php'; ?>
-	
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
