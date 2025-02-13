@@ -55,14 +55,14 @@ if (!isset($_SESSION['kayttajanimi']) || $_SESSION['rooli'] !== 'admin') {
 						<div class="col-md roboto">
 							<h3 id="postTitle<?= $id ?>" class="mb-2"><?= $reference["otsikko"] ?></h3>
 							<input id="postTitleEdit<?= $id ?>" type="text" name="otsikko"
-								value="<?= $reference["otsikko"] ?>" class="h3-edit mb-2 d-none">
+								value="<?= $reference["otsikko"] ?>" class="h3-edit mb-2 form-control d-none">
 							<p id="postText<?= $id ?>" class="mb-2"><?= $reference["teksti"] ?></p>
 							<textarea id="postTextEdit<?= $id ?>" name="teksti" class="form-control mb-2 d-none"
 								rows="7"><?= $reference["teksti"] ?></textarea>
 						</div>
 						<div class="col-md">
-							<input id="postImgEdit<?= $id ?>" type="text" class="d-none" name="kuva"
-								value="<?= $reference["kuva"] ?>">
+							<input id="postImgEdit<?= $id ?>" type="text" class="form-control d-none mb-2" name="kuva"
+								placeholder="Kuvan URL" value="<?= $reference["kuva"] ?>">
 							<img id="postImg<?= $id ?>" src="<?= $reference["kuva"] ?>" class="img-fluid"
 								alt="referenssikuva">
 						</div>
@@ -89,8 +89,34 @@ if (!isset($_SESSION['kayttajanimi']) || $_SESSION['rooli'] !== 'admin') {
 			</section><?php }
 		?>
 
+		<form id="formNew" class="d-none">
+			<div class="row">
+				<div class="col-md roboto">
+					<input id="postTitleEditNew" type="text" name="otsikko" placeholder="Otsikko"
+						class="h3-edit mb-2 form-control">
+					<textarea id="postTextEditNew" name="teksti" class="form-control mb-2" rows="7"
+						placeholder="Kuvaus referenssistä"></textarea>
+				</div>
+				<div class="col-md">
+					<input id="postImgEditNew" type="text" class="form-control mb-2" placeholder="Kuvan URL"
+						name="kuva">
+				</div>
+			</div>
+			<div>
+				<div id="btnCreate" class="btn btn-success mt-2" onClick="saveCreatePost()">
+					Tallenna
+					muutokset <i class="bi bi-check-circle"></i></i>
+				</div>
+				<div id="btnUndoCreate" class="btn btn-secondary mt-2" onClick="undoCreatePost()">
+					Peru
+					lisäys <i class="bi bi-reply"></i></i>
+				</div>
+			</div>
+		</form>
+
 		<section>
-			<div class="btn btn-success">Luo uusi referenssi <i class="bi bi-plus-square"></i></i>
+			<div class="btn btn-success mt-2" onClick="startCreatePost()">Luo uusi referenssi <i
+					class="bi bi-plus-square"></i></i>
 			</div>
 		</section>
 	</main>
@@ -125,6 +151,12 @@ if (!isset($_SESSION['kayttajanimi']) || $_SESSION['rooli'] !== 'admin') {
 			// Display image editor
 			const imgEditElement = document.getElementById("postImgEdit" + id);
 			imgEditElement.classList.remove("d-none");
+
+			// Copy title to titleEditor, copy text to textEditor, copy img url to image editor
+			postTitleEditElement.value = postTitleElement.innerText;
+			postTextEditElement.value = postTextElement.innerText;
+			const imgElement = document.getElementById("postImg" + id);
+			imgEditElement.value = imgElement.getAttribute("src");
 		}
 
 		function undoEditPost(id) {
@@ -151,13 +183,44 @@ if (!isset($_SESSION['kayttajanimi']) || $_SESSION['rooli'] !== 'admin') {
 			// Hide image editor
 			const imgEditElement = document.getElementById("postImgEdit" + id);
 			imgEditElement.classList.add("d-none");
+		}
 
-			// Copy title to titleEditor, copy text to textEditor, copy img url to image editor
-			postTitleEditElement.value = postTitleElement.innerText;
-			postTextEditElement.value = postTextElement.innerText;
+		function startCreatePost() {
+			// Display new post editor
+			let postFormElement = document.getElementById("formNew");
+			postFormElement.classList.remove("d-none");
+		}
 
-			const imgElement = document.getElementById("postImg" + id);
-			imgEditElement.value = imgElement.getAttribute("src");
+		function undoCreatePost() {
+			// Reset post editor
+			let postTitleEditElement = document.getElementById("postTitleEditNew");
+			postTitleEditElement.value = "";
+			let postTextEditElement = document.getElementById("postTextEditNew");
+			postTextEditElement.value = "";
+			let postImgEditElement = document.getElementById("postImgEditNew");
+			postImgEditElement.value = "";
+
+			// Hide new post editor
+			let postFormElement = document.getElementById("formNew");
+			postFormElement.classList.add("d-none");
+		}
+
+		async function saveCreatePost() {
+			let formData = new FormData(document.getElementById("formNew"));
+
+			try {
+				let response = await fetch("create_reference.php", {
+					method: "POST",
+					body: formData,
+					credentials: "same-origin"
+				});
+
+				if (response.status == 200) {
+					location.reload();
+				}
+			} catch (error) {
+				console.error(error);
+			}
 		}
 
 		async function saveEditPost(id) {
@@ -197,17 +260,33 @@ if (!isset($_SESSION['kayttajanimi']) || $_SESSION['rooli'] !== 'admin') {
 				});
 
 				if (response.status == 200) {
-					let resultJson = await response.text();
-					let result = JSON.parse(resultJson);
+					location.reload();
+				}
+			} catch (error) {
+				console.error(error);
+			}
+		}
 
-					// Title, text, img src
-					postTitleElement.innerText = result[1];
-					postTitleEditElement.value = result[1];
-					postTextElement.innerText = result[2];
-					postTextEditElement.value = result[2];
-					imgElement.src = result[3];
+		async function deletePost(id) {
+			let title = document.getElementById("postTitle" + id).innerText;
+			if (!confirm("Haluatko varmasti poistaa referenssin '" + title + "'")) {
+				return;
+			}
 
-					console.log(data);
+			let formData = new FormData(document.getElementById("form" + id));
+
+			try {
+				let response = await fetch("delete_reference.php", {
+					method: "POST",
+					body: formData,
+					credentials: "same-origin"
+				});
+
+				let result = await response.text;
+				console.log(result);
+
+				if (response.status == 200) {
+					location.reload();
 				}
 			} catch (error) {
 				console.error(error);
