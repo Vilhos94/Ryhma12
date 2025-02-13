@@ -90,3 +90,13 @@ a.no-underline {
 	margin-bottom: 0px;
 	margin-top: 60px;
 }
+
+.h3-edit {
+	color: #2B569C;
+	font-size: calc(1.3rem + .6vw);
+	font-weight: 500;
+}
+
+.h3-edit:focus {
+	color: #2B569C;
+}
