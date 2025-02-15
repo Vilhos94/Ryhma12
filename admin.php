@@ -39,7 +39,6 @@ if (!isset($_SESSION['kayttajanimi']) || $_SESSION['rooli'] !== 'admin') {
 
 	<main class="container-lg pt-5 px-md-5">
 		<h2>Admin-paneeli</h2>
-		<a href="yhteydenotto_view.php">Yhteydenotot</a>
 	</main>
 
 	<footer>

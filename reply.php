@@ -33,7 +33,7 @@ if (isset($_GET['email']) && isset($_GET['nimi'])) {
                 <textarea class="form-control" name="message" rows="5" placeholder="Kirjoita viesti..." required></textarea>
             </div>
             <button type="submit" class="btn btn-success">Lähetä vastaus</button>
-            <a href="view_messages.php" class="btn btn-secondary">Peruuta</a>
+            <a href="yhteydenotto_view.php" class="btn btn-secondary">Peruuta</a>
         </form>
     </div>
 </body>
