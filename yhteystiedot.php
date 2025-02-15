@@ -48,7 +48,7 @@
 					<div class="col-12 col-md-6 mb-5">
 						<div class="card shadow-lg p-4">
 							<h3 class="text-center mb-4">Ota yhteyttä</h3>
-							<form action="submit.php" method="POST">
+							<form action="contactform_submit.php" method="POST">
 								<div class="mb-3">
 									<label for="name" class="form-label">Nimi</label>
 									<input type="text" class="form-control" id="name" name="name"
