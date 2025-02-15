@@ -1,6 +1,5 @@
-<?php include "db_pdo.php"; ?>
-
 <?php
+    include "db_pdo.php"; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
