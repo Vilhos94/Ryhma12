@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['kayttajanimi']) || !isset($_SESSION['rooli']) || $_SESSION['rooli'] !== 'admin') {
+    header("Location: login.php");
+    exit();
+}
+
 if (isset($_GET['email']) && isset($_GET['nimi'])) {
     $email = urldecode($_GET['email']);
     $nimi = urldecode($_GET['nimi']);

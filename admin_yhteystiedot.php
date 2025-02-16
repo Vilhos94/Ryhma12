@@ -1,5 +1,4 @@
 <?php 
-
 session_start();
 
 if (!isset($_SESSION['kayttajanimi']) || !isset($_SESSION['rooli']) || $_SESSION['rooli'] !== 'admin') {
@@ -10,7 +9,6 @@ if (!isset($_SESSION['kayttajanimi']) || !isset($_SESSION['rooli']) || $_SESSION
 include "db_pdo.php";
 
 try {
-    // Fetch all records
     $sql = "SELECT id, nimi, puhnum, email, viesti, submitted_at FROM koivu_yhtott ORDER BY submitted_at DESC";
     $stmt = $pdo->query($sql);
     $messages = $stmt->fetchAll();
@@ -48,8 +46,8 @@ try {
 <body>
     <?php include './header_admin.php'; ?>
 
-    <div class="d-flex flex-column min-vh-100">  <!-- Flex container -->
-        <div class="container mt-5 mb-5 flex-grow-1">  <!-- Content area -->
+    <div class="d-flex flex-column min-vh-100">
+        <div class="container mt-5 mb-5 flex-grow-1">
             <h2 class="mb-4">Saapuneet Viestit</h2>
 
             <table class='table table-striped'>
@@ -79,10 +77,10 @@ try {
                 </tbody>
             </table>
             <a href="admin.php" class="btn btn-secondary mb-5">Takaisin</a>
-        </div> <!-- End Content area -->
+        </div>
 
     <?php include 'footer.php'; ?>
-    </div> <!-- End Flex container -->
+    </div>
 </body>
 
 
