@@ -34,11 +34,11 @@ include 'db_pdo.php';
 
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 <?php include './header_admin.php'; ?>
 
-    <div class="container">
+    <div class="container flex-grow-1">
         <h1 class="mt-5 mb-5">Sisällönhallinta</h1>
         <?php
         try {
@@ -67,7 +67,7 @@ include 'db_pdo.php';
             echo "<p>Error fetching content: " . $e->getMessage() . "</p>";
         }
         ?>
-                <a href="admin.php" class="btn btn-secondary">Takaisin</a>
+                <a href="admin.php" class="btn btn-secondary mb-5">Takaisin</a>
     </div>
     <?php include 'footer.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

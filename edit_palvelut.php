@@ -58,29 +58,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Edit Content</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Suunnittelupalvelut | Insinööritoimisto Koivu Oy</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Roboto font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900" rel="stylesheet">
+
+	<!-- Favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+	<link rel="manifest" href="site.webmanifest">
+
+	<link rel="stylesheet" href="henri.css">
+	<link rel="stylesheet" href="ville.css">
+	<link rel="stylesheet" href="nico.css">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
-<body>
-<div class="container">
-    <h1>Muokkaa Sisältöä</h1>
-    <form method="post">
-        <div class="mb-3">
-            <label for="otsikko" class="form-label">Otsikko:</label>
-            <input type="text" class="form-control" id="otsikko" name="otsikko" value="<?php echo htmlspecialchars($row['otsikko']); ?>">
-        </div>
-        <div class="mb-3">
-            <label for="teksti" class="form-label">Teksti:</label>
-            <textarea class="form-control" id="teksti" name="teksti" rows="4"><?php echo htmlspecialchars($row['teksti']); ?></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="kuva" class="form-label">Kuva URL (Ei Pakollinen):</label>
-            <input type="text" class="form-control" id="kuva" name="kuva" value="<?php  $kuvaValue = ($row['kuva'] === null) ? '' : (string)$row['kuva']; echo htmlspecialchars($kuvaValue); ?>">
-        </div>
-        <button type="submit" class="btn btn-primary">Päivitä</button>
-        <a href="admin_suunnittelupalvelut.php" class="btn btn-secondary">Peruuta</a>
-    </form>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+<body class="d-flex flex-column min-vh-100">
+<?php include './header_admin.php'; ?>
+    <div class="container mt-5 flex-grow-1">
+        <h1>Muokkaa Sisältöä</h1>
+        <form method="post">
+            <div class="mb-3">
+                <label for="otsikko" class="form-label">Otsikko:</label>
+                <input type="text" class="form-control" id="otsikko" name="otsikko" value="<?php echo htmlspecialchars($row['otsikko']); ?>">
+            </div>
+            <div class="mb-3">
+                <label for="teksti" class="form-label">Teksti:</label>
+                <textarea class="form-control" id="teksti" name="teksti" rows="15"><?php echo htmlspecialchars($row['teksti']); ?></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="kuva" class="form-label">Kuva URL (Ei Pakollinen):</label>
+                <input type="text" class="form-control" id="kuva" name="kuva" value="<?php  $kuvaValue = ($row['kuva'] === null) ? '' : (string)$row['kuva']; echo htmlspecialchars($kuvaValue); ?>">
+            </div>
+            <button type="submit" class="btn btn-primary mb-5">Päivitä</button>
+            <a href="admin_suunnittelupalvelut.php" class="btn btn-secondary mb-5">Peruuta</a>
+        </form>
+    </div>
+        <?php include 'footer.php'; ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>
