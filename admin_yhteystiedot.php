@@ -2,16 +2,11 @@
 
 session_start();
 
-/*
-if (!isset($_SESSION['rooli']) || $_SESSION['rooli'] !== true) {
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['kayttajanimi'] == 'Admin' && $_POST['salasana'] == 'kakku200') {
-        $_SESSION['rooli'] = true;
-    } else {
-        header("Location:login.php");
-        exit;
-    }
+if (!isset($_SESSION['kayttajanimi']) || !isset($_SESSION['rooli']) || $_SESSION['rooli'] !== 'admin') {
+    header("Location: login.php");
+    exit();
 }
-*/
+
 include "db_pdo.php";
 
 try {
