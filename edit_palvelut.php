@@ -1,11 +1,11 @@
 <?php
 session_start();
-/*
-if (!isset($_SESSION["admin"]) || $_SESSION["admin"] !== true) {
+
+if (!isset($_SESSION['kayttajanimi']) || !isset($_SESSION['rooli']) || $_SESSION['rooli'] !== 'admin') {
     header("Location: login.php");
     exit();
 }
-*/
+
 include 'db_pdo.php';
 
 $id = isset($_GET['id']) ? $_GET['id'] : null;
@@ -32,9 +32,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $teksti = $_POST["teksti"];
     $kuva = $_POST["kuva"];
 
-    // Sanitize input!
+
     $otsikko = htmlspecialchars(trim($otsikko));
-    $teksti = htmlspecialchars(trim($teksti));
+    $teksti = trim($teksti);
+    $teksti = str_replace(["\r\n", "\r"], "\n", $teksti);
     $kuva = empty(trim($kuva)) ? null : htmlspecialchars(trim($kuva));
 
     try {
@@ -46,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 
-        header("Location: admin_suunnittelupalvelut.php"); // Redirect back to admin panel
+        header("Location: admin_suunnittelupalvelut.php");
         exit();
 
     } catch (PDOException $e) {
@@ -62,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 <div class="container">
-    <h1>Edit Content</h1>
+    <h1>Muokkaa Sisältöä</h1>
     <form method="post">
         <div class="mb-3">
             <label for="otsikko" class="form-label">Otsikko:</label>
@@ -73,12 +74,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <textarea class="form-control" id="teksti" name="teksti" rows="4"><?php echo htmlspecialchars($row['teksti']); ?></textarea>
         </div>
         <div class="mb-3">
-            <label for="kuva" class="form-label">Kuva URL (Optional):</label>
+            <label for="kuva" class="form-label">Kuva URL (Ei Pakollinen):</label>
             <input type="text" class="form-control" id="kuva" name="kuva" value="<?php  $kuvaValue = ($row['kuva'] === null) ? '' : (string)$row['kuva']; echo htmlspecialchars($kuvaValue); ?>">
-            <div class="form-text">Leave blank for NULL.</div>
         </div>
-        <button type="submit" class="btn btn-primary">Update Content</button>
-        <a href="admin.php" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary">Päivitä</button>
+        <a href="admin_suunnittelupalvelut.php" class="btn btn-secondary">Peruuta</a>
     </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

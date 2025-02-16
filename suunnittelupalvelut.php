@@ -34,41 +34,41 @@
 			include 'db_pdo.php';
 
         function formatTextWithParagraphs($text) {
-            $paragraphs = explode("\n\n", $text); // Split into paragraphs
+            $paragraphs = explode("\n\n", $text);
             $formattedText = '';
             foreach ($paragraphs as $paragraph) {
-                $formattedText .= '<p>' . htmlspecialchars(trim($paragraph)) . '</p>'; // Wrap in <p> tags
+                $formattedText .= '<p>' . htmlspecialchars(trim($paragraph)) . '</p>';
             }
             return $formattedText;
         }
 
-        // Function to fetch data from the database
+        // Funktio datan hakuun tietokannasta
         function getSectionData($pdo, $section_id) {
             $sql = "SELECT otsikko, teksti, kuva FROM koivu_palvelut WHERE section_id = :section_id";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':section_id', $section_id, PDO::PARAM_STR);
             $stmt->execute();
 
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);  // Fetch associative array
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            return $result ? $result : null; // Return null if no result
+            return $result ? $result : null;
         }
 
-        // Rakennussuunnittelu Section
-        $rakennussuunnittelu = getSectionData($pdo, 'rakennussuunnittelu');
-        if ($rakennussuunnittelu) {
+        // Rakennussuunnittelu osio
+        $section_1 = getSectionData($pdo, 'section_1');
+        if ($section_1) {
             ?>
-            <section id="rakennussuunnittelu">
+            <section id="section_1">
                 <div class="container">
                     <div class="row mt-5">
                         <article class="col-12 col-md-6">
                             <header>
-                                <h2><?php echo htmlspecialchars($rakennussuunnittelu['otsikko']); ?></h2>
+                                <h2><?php echo htmlspecialchars($section_1['otsikko']); ?></h2>
                             </header>
-                            <p class="mt-4"><?php echo formatTextWithParagraphs($rakennussuunnittelu['teksti']); ?></p>
+                            <p class="mt-4"><?php echo formatTextWithParagraphs($section_1['teksti']); ?></p>
                         </article>
                         <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
-                            <img src="<?php echo htmlspecialchars($rakennussuunnittelu['kuva']); ?>" alt="rakennussuunnittelu"
+                            <img src="<?php echo htmlspecialchars($section_1['kuva']); ?>" alt="section_1"
                                 class="img-fluid">
                         </div>
                     </div>
@@ -77,22 +77,22 @@
             <?php
         }
 
-        // Rakennesuunnittelu Section
-        $rakennesuunnittelu = getSectionData($pdo, 'rakennesuunnittelu');
-        if ($rakennesuunnittelu) {
+        // Rakennesuunnittelu osio
+        $section_2 = getSectionData($pdo, 'section_2');
+        if ($section_2) {
             ?>
-            <section id="rakennesuunnittelu">
+            <section id="section_2">
                 <div class="container">
                     <div class="row mt-5 flex-column-reverse flex-md-row">
                         <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
-                            <img src="<?php echo htmlspecialchars($rakennesuunnittelu['kuva']); ?>" alt="rakennesuunnittelu"
+                            <img src="<?php echo htmlspecialchars($section_2['kuva']); ?>" alt="section_2"
                                 class="img-fluid">
                         </div>
                         <article class="col-12 col-md-6">
                             <header>
-                                <h2 class="mt-4"><?php echo htmlspecialchars($rakennesuunnittelu['otsikko']); ?></h2>
+                                <h2 class="mt-4"><?php echo htmlspecialchars($section_2['otsikko']); ?></h2>
                             </header>
-                            <p class="mt-4"><?php echo formatTextWithParagraphs($rakennesuunnittelu['teksti']); ?></p>
+                            <p class="mt-4"><?php echo formatTextWithParagraphs($section_2['teksti']); ?></p>
                         </article>
                     </div>
                 </div>
@@ -100,30 +100,29 @@
             <?php
         }
 
-        // Elementtisuunnittelu Section
-        $elementtisuunnittelu = getSectionData($pdo, 'elementtisuunnittelu');
-        if ($elementtisuunnittelu) {
+        // Elementtisuunnittelu osio
+        $section_3 = getSectionData($pdo, 'section_3');
+        if ($section_3) {
             ?>
-            <section id="elementtisuunnittelu">
+            <section id="section_3">
                 <div class="container">
                     <div class="row mt-5">
                         <article class="col-12 col-md-6">
                             <header>
-                                <h2><?php echo htmlspecialchars($elementtisuunnittelu['otsikko']); ?></h2>
+                                <h2><?php echo htmlspecialchars($section_3['otsikko']); ?></h2>
                             </header>
-                            <p class="mt-4"><?php echo formatTextWithParagraphs($elementtisuunnittelu['teksti']); ?></p>
-                        </article>
-                        <!-- You'll likely need to adapt the structure for the aside based on your database content -->
+                            <p class="mt-4"><?php echo formatTextWithParagraphs($section_3['teksti']); ?></p>
+                        </article><?php
+        }
+                    $aside_1 = getSectionData($pdo, 'aside_1');
+                    if ($aside_1) {
+                        ?>
                         <aside
                             class="col-12 col-md-6 text-center bg-blue d-flex flex-column align-items-center justify-content-center text-white text-white-h2">
-                            <h3 class="text-white">Yleisiä suunniteltavia betonielementtityyppejä ovat mm:</h3>
-                            <ul class="mt-3">
-                                <li>Sokkeli- ja julkisivuelementit</li>
-                                <li>Väliseinäelementit</li>
-                                <li>Parveke-elementit</li>
-                                <li>Massiivilaatat ja ontelolaatat</li>
-                                <li>Runkoelementit</li>
-                            </ul>
+                            <h3 class="text-white"><?php echo htmlspecialchars($aside_1['otsikko']); ?></h3>
+                            <article class="mt-3">
+                            <?php echo formatTextWithParagraphs($aside_1['teksti']); ?>
+                            </article>
                         </aside>
                     </div>
                 </div>
@@ -181,29 +180,29 @@
             <?php
         }
 
-        // Pääsuunnittelu and Energiasuunnittelu Section
-        $paasuunnittelu_energia = getSectionData($pdo, 'paasuunnittelu');
-        if ($paasuunnittelu_energia) {
+        // Pääsuunnittelu ja Energiasuunnittelu osio
+        $section_4 = getSectionData($pdo, 'section_4');
+        if ($section_4) {
             ?>
-            <section id="paasuunnittelu-energia">
+            <section id="section_4">
                 <div class="container">
                     <div class="row mt-5 mb-5">
                         <article class="col-12 col-md-6">
                             <header>
-                                <h2><?php echo htmlspecialchars($paasuunnittelu_energia['otsikko']); ?></h2>
+                                <h2><?php echo htmlspecialchars($section_4['otsikko']); ?></h2>
                             </header>
-                            <p class="mt-4"><?php echo formatTextWithParagraphs($paasuunnittelu_energia['teksti']); ?></p>
+                            <p class="mt-4"><?php echo formatTextWithParagraphs($section_4['teksti']); ?></p>
                         </article>
                         <?php
 		}
-		$energiasuunnittelu = getSectionData($pdo, 'energiasuunnittelu');
-		if ($energiasuunnittelu) {
+		$section_5 = getSectionData($pdo, 'section_5');
+		if ($section_5) {
                         ?>
                         <article class="col-12 col-md-6">
                             <header>
-                                <h2><?php echo htmlspecialchars($paasuunnittelu_energia['otsikko']); ?></h2>
+                                <h2><?php echo htmlspecialchars($section_5['otsikko']); ?></h2>
                             </header>
-                            <p class="mt-4"><?php echo formatTextWithParagraphs($paasuunnittelu_energia['teksti']); ?></p>
+                            <p class="mt-4"><?php echo formatTextWithParagraphs($section_5['teksti']); ?></p>
                         </article>
                     </div>
                 </div>
@@ -211,48 +210,49 @@
             <?php
         }
 
-        // Close database connection
-        $pdo = null; //Close PDO connection by setting it to null
-        ?>
 
-        <div class="accordion accordion-flush custom-accordion mb-5" id="accordionFlushExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                        Energiatodistus
-                    </button>
+
+        $accordian_1 = getSectionData($pdo, 'accordian_1');
+        if ($accordian_1) {
+                        ?>
+                        <div class="accordion accordion-flush custom-accordion mb-5" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    <?php echo htmlspecialchars($accordian_1['otsikko']); ?>
+                                 </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                     data-bs-parent="#accordionFlushExample">
-                    <article class="accordion-body">Energiatodistus on työkalu eri rakennusten energiatehokkuuden
-                        vertailuun
-                        ja parantamiseen myynti- ja vuokraustilanteessa. Energiatodistuksen avulla voi helposti verrata
-                        eri rakennuksia sillä se perustuu rakennuksen ominaisuuksiin ja niistä johdettuun
-                        energiankulutukseen. Energiatodistus on voimassa 10 vuotta sen antopäivästä.
+                    <article class="accordion-body"><?php echo formatTextWithParagraphs($accordian_1['teksti']); ?>
                     </article>
                 </div>
-            </div>
+            </div><?php
+        }
+            $accordian_2 = getSectionData($pdo, 'accordian_2');
+            if ($accordian_2) {
+                ?>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                        Energiaselvitys
+                        <?php echo htmlspecialchars($accordian_2['otsikko']); ?>
                     </button>
                 </h2>
                 <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
                     data-bs-parent="#accordionFlushExample">
-                    <article class="accordion-body">Energiaselvitys on kattava selvitys rakennuksen energiankäytöstä ja
-                        se
-                        tulee laatia uusille rakennuksille rakennusluvan liitteeksi. Energiatodistus on
-                        energiaselvityksen osa, jonka lisäksi pientalon energiaselvitys sisältää yleensä: selvityksen
-                        lämpöhäviöiden määräystenmukaisuudesta, ilmanvaihtojärjestelmän ominaissähkötehon, arvioidun
-                        lämmitystehontarpeen, sekä arvion todellisesta ostoenergiankulutuksesta.
-                    </article>
+                    <article class="accordion-body"><?php echo formatTextWithParagraphs($accordian_2['teksti']); ?>
+                    </article><?php 
+            }?>
                 </div>
             </div>
         </div>
     </main>
+        
+    <?php
+    $pdo = null;
+    ?>
 
     <?php include 'footer.php'; ?>
 

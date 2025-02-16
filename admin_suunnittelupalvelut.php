@@ -6,7 +6,7 @@ if (!isset($_SESSION['kayttajanimi']) || !isset($_SESSION['rooli']) || $_SESSION
     exit();
 }
 
-include 'db_pdo.php'; // Include database connection
+include 'db_pdo.php';
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@ include 'db_pdo.php'; // Include database connection
 </head>
 <body>
 <div class="container">
-    <h1>Manage Content</h1>
+    <h1>Sisällönhallinta</h1>
     <?php
     try {
         $stmt = $pdo->query("SELECT * FROM koivu_palvelut");
@@ -25,17 +25,16 @@ include 'db_pdo.php'; // Include database connection
 
         if ($results) {
             echo "<table class='table table-striped'>";
-            echo "<thead><tr><th>ID</th><th>Section ID</th><th>Otsikko</th><th>Teksti</th><th>Kuva</th><th>Actions</th></tr></thead>";
+            echo "<thead><tr><th>Section ID</th><th>Otsikko</th><th>Teksti</th><th>Kuva</th><th>Actions</th></tr></thead>";
             echo "<tbody>";
             foreach ($results as $row) {
                 echo "<tr>";
-                echo "<td>" . htmlspecialchars($row['id']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['section_id']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['otsikko']) . "</td>";
-                echo "<td>" . htmlspecialchars(substr($row['teksti'], 0, 50)) . "...</td>"; // Display a snippet
+                echo "<td>" . htmlspecialchars(substr($row['teksti'], 0, 50)) . "...</td>";
                 $kuvaValue = ($row['kuva'] === null) ? '' : (string)$row['kuva'];
                 echo "<td>" . htmlspecialchars($kuvaValue) . "</td>";
-                echo "<td><a href='edit_palvelut.php?id=" . htmlspecialchars($row['id']) . "' class='btn btn-sm btn-warning'>Edit</a></td>";
+                echo "<td><a href='edit_palvelut.php?id=" . htmlspecialchars($row['id']) . "' class='btn btn-sm btn-warning'>Muokkaa</a></td>";
                 echo "</tr>";
             }
             echo "</tbody></table>";
