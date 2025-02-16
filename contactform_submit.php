@@ -24,11 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ":viesti" => $viesti
         ]);
 
-        echo "Viesti lähetetty onnistuneesti!";
-
+        echo "Viesti lähetetty onnistuneesti!<br><br>";
+        echo "<a href='yhteystiedot.php'>Takaisin</a>";
     } catch (PDOException $e) {
         echo "Virhe tallennuksessa: " . $e->getMessage();
     }
 }
 ?>
-
