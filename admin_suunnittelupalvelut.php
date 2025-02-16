@@ -45,10 +45,18 @@ include 'db_pdo.php';
             $stmt = $pdo->query("SELECT * FROM koivu_palvelut");
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if ($results) {
-                echo "<table class='table table-striped'>";
-                echo "<thead class='table-dark'><tr><th>Tunniste ID</th><th>Otsikko</th><th>Teksti</th><th>Kuva</th><th>Actions</th></tr></thead>";
-                echo "<tbody>";
+            if ($results) { ?>
+                <table class='table table-striped'>
+                <thead class="table-dark">
+                    <tr>
+                        <th>Tunniste ID</th>
+                        <th>Otsikko</th>
+                        <th>Teksti</th>
+                        <th>Kuva</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody> <?php            
                 foreach ($results as $row) {
                     echo "<tr>";
                     echo "<td>" . htmlspecialchars($row['section_id']) . "</td>";
@@ -59,7 +67,9 @@ include 'db_pdo.php';
                     echo "<td><a href='edit_palvelut.php?id=" . htmlspecialchars($row['id']) . "' class='btn btn-sm btn-primary'>Muokkaa</a></td>";
                     echo "</tr>";
                 }
-                echo "</tbody></table>";
+                ?>
+                </tbody></table>
+                <?php
             } else {
                 echo "<p>No content found.</p>";
             }

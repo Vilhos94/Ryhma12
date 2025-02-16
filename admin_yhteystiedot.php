@@ -12,7 +12,6 @@ try {
     $sql = "SELECT id, nimi, puhnum, email, viesti, submitted_at FROM koivu_yhtott ORDER BY submitted_at DESC";
     $stmt = $pdo->query($sql);
     $messages = $stmt->fetchAll();
-
 } catch (PDOException $e) {
     die("Tietokantavirhe: " . $e->getMessage());
 }
@@ -21,26 +20,26 @@ try {
 <!DOCTYPE html>
 <html lang="fi">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Saapuneet viestit | Insinööritoimisto Koivu Oy</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saapuneet viestit | Insinööritoimisto Koivu Oy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-	<!-- Roboto font -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900" rel="stylesheet">
+    <!-- Roboto font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900" rel="stylesheet">
 
-	<!-- Favicon -->
-	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-	<link rel="manifest" href="site.webmanifest">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
 
-	<link rel="stylesheet" href="henri.css">
-	<link rel="stylesheet" href="ville.css">
-	<link rel="stylesheet" href="nico.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="henri.css">
+    <link rel="stylesheet" href="ville.css">
+    <link rel="stylesheet" href="nico.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body>
@@ -62,26 +61,26 @@ try {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($messages as $msg): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($msg["nimi"]) ?></td>
-                        <td><?= htmlspecialchars($msg["puhnum"]) ?></td>
-                        <td><?= htmlspecialchars($msg["email"]) ?></td>
-                        <td><?= nl2br(htmlspecialchars($msg["viesti"])) ?></td>
-                        <td><?= htmlspecialchars($msg["submitted_at"]) ?></td>
-                        <td>
-                            <a href="reply.php?email=<?= urlencode($msg['email']) ?>&nimi=<?= urlencode($msg['nimi']) ?>" class="btn btn-primary btn-sm">Vastaa</a>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
+                    <?php
+                    foreach ($messages as $msg) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($msg["nimi"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($msg["puhnum"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($msg["email"]) . "</td>";
+                        echo "<td>" . nl2br(htmlspecialchars($msg["viesti"])) . "</td>";
+                        echo "<td>" . htmlspecialchars($msg["submitted_at"]) . "</td>";
+                        echo "<td>";
+                        echo "<a href='reply.php?email=" . urlencode($msg['email']) . "&nimi=" . urlencode($msg['nimi']) . "' class='btn btn-primary btn-sm'>Vastaa</a>";
+                        echo "</td>";
+                        echo "</tr>";
+                    }
+                    ?>
                 </tbody>
             </table>
             <a href="admin.php" class="btn btn-secondary mb-5">Takaisin</a>
         </div>
 
-    <?php include 'footer.php'; ?>
+        <?php include 'footer.php'; ?>
     </div>
 </body>
-
-
 </html>
