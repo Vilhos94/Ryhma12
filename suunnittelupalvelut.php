@@ -127,7 +127,7 @@
                     </div>
                 </div>
             </section>
-
+            
             <section>
             <div class="container mt-5 mb-5">
                 <div class="row">
@@ -139,30 +139,42 @@
                                 aria-label="Slide 2"></button>
                             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
                                 aria-label="Slide 3"></button>
+        <?php $carousel_1 = getSectionData($pdo, 'carousel_1');
+            if ($carousel_1) {
+                ?>
                         </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="images/karuselli1.webp" class="d-block w-100" alt="referenssi1">
+                                <img src="<?php echo htmlspecialchars($carousel_1['kuva']); ?>" class="d-block w-100" alt="referenssi1">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5 class="text-white">2018 Kangasala</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <h5 class="text-white"><?php echo htmlspecialchars($carousel_1['otsikko']); ?></h5>
+                                    <p><?php echo formatTextWithParagraphs($carousel_1['teksti']); ?></p>
                                 </div>
                             </div>
+                        <?php }
+        $carousel_2 = getSectionData($pdo, 'carousel_2');
+            if ($carousel_2) {
+                    ?>
                             <div class="carousel-item">
-                                <img src="images/karuselli2.webp" class="d-block w-100" alt="referenssi2">
+                                <img src="<?php echo htmlspecialchars($carousel_2['kuva']); ?>" class="d-block w-100" alt="referenssi2">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5 class="text-white">2017 Tampere</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <h5 class="text-white"><?php echo htmlspecialchars($carousel_2['otsikko']); ?></h5>
+                                    <p><?php echo formatTextWithParagraphs($carousel_2['teksti']); ?>.</p>
                                 </div>
                             </div>
+                            <?php }
+        $carousel_3 = getSectionData($pdo, 'carousel_3');
+            if ($carousel_3) {
+                    ?>
                             <div class="carousel-item">
-                                <img src="images/karuselli3.webp" class="d-block w-100" alt="referenssi3">
+                                <img src="<?php echo htmlspecialchars($carousel_3['kuva']); ?>" class="d-block w-100" alt="referenssi3">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5 class="text-white">2016 Kerava</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <h5 class="text-white"><?php echo htmlspecialchars($carousel_3['otsikko']); ?></h5>
+                                    <p><?php echo formatTextWithParagraphs($carousel_3['teksti']); ?></p>
                                 </div>
                             </div>
                         </div>
+                        <?php } ?>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
                             data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

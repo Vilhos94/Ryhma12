@@ -25,7 +25,7 @@ include 'db_pdo.php';
 
         if ($results) {
             echo "<table class='table table-striped'>";
-            echo "<thead><tr><th>Section ID</th><th>Otsikko</th><th>Teksti</th><th>Kuva</th><th>Actions</th></tr></thead>";
+            echo "<thead><tr><th>Tunniste ID</th><th>Otsikko</th><th>Teksti</th><th>Kuva</th><th>Actions</th></tr></thead>";
             echo "<tbody>";
             foreach ($results as $row) {
                 echo "<tr>";
