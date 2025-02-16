@@ -1,4 +1,4 @@
-<footer class="fixed-bottom">
+<footer>
 		<div class="container-md py-3 roboto">
 			<div class="row">
 				<div class="col-sm-4">
