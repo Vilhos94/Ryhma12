@@ -128,44 +128,8 @@
                     </div>
                 </div>
             </section>
-            <?php
-        }
 
-        // Pääsuunnittelu and Energiasuunnittelu Section
-        $paasuunnittelu_energia = getSectionData($pdo, 'paasuunnittelu');
-        if ($paasuunnittelu_energia) {
-            ?>
-            <section id="paasuunnittelu-energia">
-                <div class="container">
-                    <div class="row mt-5 mb-5">
-                        <article class="col-12 col-md-6">
-                            <header>
-                                <h2><?php echo htmlspecialchars($paasuunnittelu_energia['otsikko']); ?></h2>
-                            </header>
-                            <p class="mt-4"><?php echo formatTextWithParagraphs($paasuunnittelu_energia['teksti']); ?></p>
-                        </article>
-                        <?php
-		}
-		$energiasuunnittelu = getSectionData($pdo, 'energiasuunnittelu');
-		if ($energiasuunnittelu) {
-                        ?>
-                        <article class="col-12 col-md-6">
-                            <header>
-                                <h2><?php echo htmlspecialchars($paasuunnittelu_energia['otsikko']); ?></h2>
-                            </header>
-                            <p class="mt-4"><?php echo formatTextWithParagraphs($paasuunnittelu_energia['teksti']); ?></p>
-                        </article>
-                    </div>
-                </div>
-            </section>
-            <?php
-        }
-
-        // Close database connection
-        $pdo = null; //Close PDO connection by setting it to null
-        ?>
-
-        <section>
+            <section>
             <div class="container mt-5 mb-5">
                 <div class="row">
                     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -214,6 +178,42 @@
                 </div>
             </div>
         </section>
+            <?php
+        }
+
+        // Pääsuunnittelu and Energiasuunnittelu Section
+        $paasuunnittelu_energia = getSectionData($pdo, 'paasuunnittelu');
+        if ($paasuunnittelu_energia) {
+            ?>
+            <section id="paasuunnittelu-energia">
+                <div class="container">
+                    <div class="row mt-5 mb-5">
+                        <article class="col-12 col-md-6">
+                            <header>
+                                <h2><?php echo htmlspecialchars($paasuunnittelu_energia['otsikko']); ?></h2>
+                            </header>
+                            <p class="mt-4"><?php echo formatTextWithParagraphs($paasuunnittelu_energia['teksti']); ?></p>
+                        </article>
+                        <?php
+		}
+		$energiasuunnittelu = getSectionData($pdo, 'energiasuunnittelu');
+		if ($energiasuunnittelu) {
+                        ?>
+                        <article class="col-12 col-md-6">
+                            <header>
+                                <h2><?php echo htmlspecialchars($paasuunnittelu_energia['otsikko']); ?></h2>
+                            </header>
+                            <p class="mt-4"><?php echo formatTextWithParagraphs($paasuunnittelu_energia['teksti']); ?></p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            <?php
+        }
+
+        // Close database connection
+        $pdo = null; //Close PDO connection by setting it to null
+        ?>
 
         <div class="accordion accordion-flush custom-accordion mb-5" id="accordionFlushExample">
             <div class="accordion-item">
