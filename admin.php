@@ -1,4 +1,5 @@
 <?php
+require('db_pdo.php');
 session_start();
 if (!isset($_SESSION['kayttajanimi']) || $_SESSION['rooli'] !== 'admin') {
 	header("Location: login.php");
@@ -38,7 +39,86 @@ if (!isset($_SESSION['kayttajanimi']) || $_SESSION['rooli'] !== 'admin') {
 	<?php include 'header_admin.php' ?>
 
 	<main class="container-lg pt-5 px-md-5">
-		<h2>Admin-paneeli</h2>
+		<h2>Ylläpitosivu</h2>
+		<p>Kirjauduttu käyttäjällä <?= $_SESSION['kayttajanimi'] ?>
+		</p>
+
+
+		<section class="roboto">
+			<div class="row">
+				<div class="col-sm">
+					<?php
+					$sql = "SELECT COUNT(*) AS total FROM koivu_palvelut";
+					// $sql = "SELECT * FROM koivu_referenssit";
+					$stmt = $pdo->prepare($sql);
+					$stmt->execute();
+					$result = $stmt->fetch();
+					$serviceCount = $result["total"];
+
+					echo "<h4>Suunnittelupalvelut (" . $serviceCount . ")</h4>";
+					?>
+				</div>
+				<div class="col-sm text-md-end">
+					<a class="nav-link" href="admin_suunnittelupalvelut.php">
+						<div class="btn btn-primary">
+							Siirry muokkaamaan <i class="bi bi-pencil"></i>
+						</div>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<hr>
+
+		<section class="roboto">
+			<div class="row">
+				<div class="col-sm">
+					<?php
+					$sql = "SELECT COUNT(*) AS total FROM koivu_referenssit";
+					// $sql = "SELECT * FROM koivu_referenssit";
+					$stmt = $pdo->prepare($sql);
+					$stmt->execute();
+					$result = $stmt->fetch();
+					$referenceCount = $result["total"];
+
+					echo "<h4>Referenssit (" . $referenceCount . ")</h4>";
+					?>
+				</div>
+				<div class="col-sm text-md-end">
+					<a class="nav-link" href="admin_referenssit.php">
+						<div class="btn btn-primary">
+							Siirry muokkaamaan <i class="bi bi-pencil"></i>
+						</div>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<hr>
+
+		<section class="roboto">
+			<div class="row">
+				<div class="col-sm">
+					<?php
+					$sql = "SELECT COUNT(*) AS total FROM koivu_yhtott";
+					// $sql = "SELECT * FROM koivu_referenssit";
+					$stmt = $pdo->prepare($sql);
+					$stmt->execute();
+					$result = $stmt->fetch();
+					$referenceCount = $result["total"];
+
+					echo "<h4>Yhteydenottopyynnöt (" . $referenceCount . ")</h4>";
+					?>
+				</div>
+				<div class="col-sm text-md-end">
+					<a class="nav-link" href="admin_yhteystiedot.php">
+						<div class="btn btn-primary">
+							Siirry selaamaan <i class="bi bi-pencil"></i>
+						</div>
+				</div>
+
+			</div>
+		</section>
 	</main>
 
 	<footer>

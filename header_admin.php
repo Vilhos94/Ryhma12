@@ -8,10 +8,13 @@
 			<div class="collapse navbar-collapse justify-content-end navbarToggle">
 				<ul class="navbar-nav">
 					<li class="nav-item">
+						<a class="nav-link" href="admin.php">Etusivu</a>
+					</li>
+					<li class="nav-item">
 						<a class="nav-link" href="admin_suunnittelupalvelut.php">Suunnittelupalvelut</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="admin_referenssit.php">Referenssit</a></li>
-					<li class="nav-item"><a class="nav-link" href="admin_yhteystiedot.php">Yhteystiedot</a></li>
+					<li class="nav-item"><a class="nav-link" href="admin_yhteystiedot.php">Yhteydenotot</a></li>
 					<li class="nav-item"><a class="nav-link" href="logout.php">Kirjaudu ulos <i
 								class="bi bi-box-arrow-in-right"></i></a></li>
 				</ul>
